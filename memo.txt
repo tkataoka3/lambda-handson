@@ -3,3 +3,6 @@
 3. helloworldフォルダのindex.tsを修正する
 4. src/functions/index.tsを修正する
 5. serverless.tsを修正する
+
+APIツール
+https://techtechmedia.com/talend-api-tester/

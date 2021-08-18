@@ -4,3 +4,4 @@ export { default as helloparams } from './helloparams';
 export { default as findAllTodo } from './findAllTodo';
 export { default as createTodo } from './createTodo';
 export { default as updateTodo } from './updateTodo';
+export { default as deleteTodo } from './deleteTodo';

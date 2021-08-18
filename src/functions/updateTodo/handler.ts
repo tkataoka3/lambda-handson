@@ -17,15 +17,7 @@ const putTodo = ({ id, text }) => {
 
 export const updateTodo: APIGatewayProxyHandler = async event => {
   const id = event.pathParameters.id;
-  console.log(`id: ${id}`);
-  console.log(`body: ${event.body}`);
-
-  const json_text = JSON.stringify(event.body);
-  console.log(`json_text: ${JSON.parse(json_text).text}`);
-
-  const text = JSON.parse(event.body).text;
-  
-
+  const text = JSON.parse(event.body).text;  
   const result = await putTodo({ id, text });
 
   return formatJSONResponse({

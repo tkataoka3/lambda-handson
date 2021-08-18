@@ -6,6 +6,7 @@ import helloparams from '@functions/helloparams';
 import findAllTodo from '@functions/findAllTodo';
 import createTodo from '@functions/createTodo';
 import updateTodo from '@functions/updateTodo';
+import deleteTodo from '@functions/deleteTodo';
 
 
 const serverlessConfiguration: AWS = {
@@ -75,7 +76,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { hello, helloworld, helloparams, findAllTodo, createTodo, updateTodo},
+  functions: { hello, helloworld, helloparams, findAllTodo, createTodo, updateTodo, deleteTodo},
 };
 
 module.exports = serverlessConfiguration;

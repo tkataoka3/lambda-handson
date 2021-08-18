@@ -143,6 +143,12 @@
               "LogGroupName": "/aws/lambda/lambda-handson-tkataoka-dev-updateTodo"
             }
           },
+          "DeleteTodoLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/lambda-handson-tkataoka-dev-deleteTodo"
+            }
+          },
           "IamRoleLambdaExecution": {
             "Type": "AWS::IAM::Role",
             "Properties": {
@@ -230,7 +236,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/lambda-handson-tkataoka/dev/1629254088904-2021-08-18T02:34:48.904Z/lambda-handson-tkataoka.zip"
+                "S3Key": "serverless/lambda-handson-tkataoka/dev/1629256733816-2021-08-18T03:18:53.816Z/lambda-handson-tkataoka.zip"
               },
               "Handler": "src/functions/hello/handler.main",
               "Runtime": "nodejs14.x",
@@ -262,7 +268,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/lambda-handson-tkataoka/dev/1629254088904-2021-08-18T02:34:48.904Z/lambda-handson-tkataoka.zip"
+                "S3Key": "serverless/lambda-handson-tkataoka/dev/1629256733816-2021-08-18T03:18:53.816Z/lambda-handson-tkataoka.zip"
               },
               "Handler": "src/functions/helloworld/handler.main",
               "Runtime": "nodejs14.x",
@@ -294,7 +300,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/lambda-handson-tkataoka/dev/1629254088904-2021-08-18T02:34:48.904Z/lambda-handson-tkataoka.zip"
+                "S3Key": "serverless/lambda-handson-tkataoka/dev/1629256733816-2021-08-18T03:18:53.816Z/lambda-handson-tkataoka.zip"
               },
               "Handler": "src/functions/helloparams/handler.main",
               "Runtime": "nodejs14.x",
@@ -326,7 +332,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/lambda-handson-tkataoka/dev/1629254088904-2021-08-18T02:34:48.904Z/lambda-handson-tkataoka.zip"
+                "S3Key": "serverless/lambda-handson-tkataoka/dev/1629256733816-2021-08-18T03:18:53.816Z/lambda-handson-tkataoka.zip"
               },
               "Handler": "src/functions/findAllTodo/handler.main",
               "Runtime": "nodejs14.x",
@@ -358,7 +364,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/lambda-handson-tkataoka/dev/1629254088904-2021-08-18T02:34:48.904Z/lambda-handson-tkataoka.zip"
+                "S3Key": "serverless/lambda-handson-tkataoka/dev/1629256733816-2021-08-18T03:18:53.816Z/lambda-handson-tkataoka.zip"
               },
               "Handler": "src/functions/createTodo/handler.main",
               "Runtime": "nodejs14.x",
@@ -390,7 +396,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/lambda-handson-tkataoka/dev/1629254088904-2021-08-18T02:34:48.904Z/lambda-handson-tkataoka.zip"
+                "S3Key": "serverless/lambda-handson-tkataoka/dev/1629256733816-2021-08-18T03:18:53.816Z/lambda-handson-tkataoka.zip"
               },
               "Handler": "src/functions/updateTodo/handler.main",
               "Runtime": "nodejs14.x",
@@ -415,64 +421,106 @@
               "UpdateTodoLogGroup"
             ]
           },
-          "HelloLambdaVersionKWBmlRClNBhiG13hgdoumkqIJyxI83BiaU0YJ6SaJgs": {
+          "DeleteTodoLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/lambda-handson-tkataoka/dev/1629256733816-2021-08-18T03:18:53.816Z/lambda-handson-tkataoka.zip"
+              },
+              "Handler": "src/functions/deleteTodo/handler.main",
+              "Runtime": "nodejs14.x",
+              "FunctionName": "lambda-handson-tkataoka-dev-deleteTodo",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+                  "DYNAMODB_TABLE": "lambda-handson-tkataoka-dev",
+                  "TODO_TABLE": "lambda-handson-tkataoka-dev-todo"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "DeleteTodoLogGroup"
+            ]
+          },
+          "HelloLambdaVersionSyqjIG8OSPWqysAFy6jAQZ6Nl9R83GTStF0t5U1CWw": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "HelloLambdaFunction"
               },
-              "CodeSha256": "CC8ysQ1taJHYh/mVMoRD8L2c8RoAEXnM1ahFGwxhOMs="
+              "CodeSha256": "6pgQE28Vct5xkHpEUcK9VvwlOZjLzqWRwzM3+gj3uMU="
             }
           },
-          "HelloworldLambdaVersionHHfLjKhHmpW5REZe04s16mLmd2dEnJHX13MPpVhsL2Y": {
+          "HelloworldLambdaVersion2hXFWS2HjjNsitv6i8GSZn4B3vCPuE8pCjWfO6J7Y0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "HelloworldLambdaFunction"
               },
-              "CodeSha256": "CC8ysQ1taJHYh/mVMoRD8L2c8RoAEXnM1ahFGwxhOMs="
+              "CodeSha256": "6pgQE28Vct5xkHpEUcK9VvwlOZjLzqWRwzM3+gj3uMU="
             }
           },
-          "HelloparamsLambdaVersionaAzSpIltYFIx0zLhSqcE1ExLsjFYlmYFIneoaeAk5o": {
+          "HelloparamsLambdaVersionZTrtG3SFOkf3YvKlpkaILoGXGm5P3TIKKjdtmK3mMA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "HelloparamsLambdaFunction"
               },
-              "CodeSha256": "CC8ysQ1taJHYh/mVMoRD8L2c8RoAEXnM1ahFGwxhOMs="
+              "CodeSha256": "6pgQE28Vct5xkHpEUcK9VvwlOZjLzqWRwzM3+gj3uMU="
             }
           },
-          "FindAllTodoLambdaVersionS7nBQIlQcuWfFLccWRPP9Q12ezI37vmE44ofLoqIE": {
+          "FindAllTodoLambdaVersionPKLBS5KCqPKBaovDYSUjqHyKhOEbipXlik23J60vr1c": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "FindAllTodoLambdaFunction"
               },
-              "CodeSha256": "CC8ysQ1taJHYh/mVMoRD8L2c8RoAEXnM1ahFGwxhOMs="
+              "CodeSha256": "6pgQE28Vct5xkHpEUcK9VvwlOZjLzqWRwzM3+gj3uMU="
             }
           },
-          "CreateTodoLambdaVersionloXTVOwB9ncSkePjELwWEI8AJaNrDXhNJG6bgjjDelo": {
+          "CreateTodoLambdaVersion7UqaL94zV6p30VQ1FrmDWyIBM7qyUEDQHmwdNWO4IwQ": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateTodoLambdaFunction"
               },
-              "CodeSha256": "CC8ysQ1taJHYh/mVMoRD8L2c8RoAEXnM1ahFGwxhOMs="
+              "CodeSha256": "6pgQE28Vct5xkHpEUcK9VvwlOZjLzqWRwzM3+gj3uMU="
             }
           },
-          "UpdateTodoLambdaVersionOwNH8LAvzaO0baQfsoNaT6ymDCkvA5XfySfTRHoJo": {
+          "UpdateTodoLambdaVersionSeB0WML7V9YMAwBI9H2QPhQmRhL5TRiwrcGMVoS0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UpdateTodoLambdaFunction"
               },
-              "CodeSha256": "CC8ysQ1taJHYh/mVMoRD8L2c8RoAEXnM1ahFGwxhOMs="
+              "CodeSha256": "6pgQE28Vct5xkHpEUcK9VvwlOZjLzqWRwzM3+gj3uMU="
+            }
+          },
+          "DeleteTodoLambdaVersione0rKhppTVwQ7xldfdzHWT4BXlb3iujDTZaQphHB2tFg": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "DeleteTodoLambdaFunction"
+              },
+              "CodeSha256": "6pgQE28Vct5xkHpEUcK9VvwlOZjLzqWRwzM3+gj3uMU="
             }
           },
           "ApiGatewayRestApi": {
@@ -595,6 +643,33 @@
             "Properties": {
               "ParentId": {
                 "Ref": "ApiGatewayResourceUpdatetodo"
+              },
+              "PathPart": "{id}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceDeletetodo": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Fn::GetAtt": [
+                  "ApiGatewayRestApi",
+                  "RootResourceId"
+                ]
+              },
+              "PathPart": "deleteTodo",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceDeletetodoIdVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceDeletetodo"
               },
               "PathPart": "{id}",
               "RestApiId": {
@@ -891,6 +966,52 @@
               "UpdateTodoLambdaPermissionApiGateway"
             ]
           },
+          "ApiGatewayMethodDeletetodoIdVarDelete": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "DELETE",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceDeletetodoIdVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "DeleteTodoLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "DeleteTodoLambdaPermissionApiGateway"
+            ]
+          },
           "ApiGatewayLambdahandsontkataokaRequestValidator": {
             "Type": "AWS::ApiGateway::RequestValidator",
             "Properties": {
@@ -922,7 +1043,7 @@
               }
             }
           },
-          "ApiGatewayDeployment1629254066751": {
+          "ApiGatewayDeployment1629256713155": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -936,7 +1057,8 @@
               "ApiGatewayMethodHelloparamsGet",
               "ApiGatewayMethodFindalltodoGet",
               "ApiGatewayMethodCreatetodoPost",
-              "ApiGatewayMethodUpdatetodoIdVarPut"
+              "ApiGatewayMethodUpdatetodoIdVarPut",
+              "ApiGatewayMethodDeletetodoIdVarDelete"
             ]
           },
           "HelloLambdaPermissionApiGateway": {
@@ -1161,6 +1283,43 @@
               }
             }
           },
+          "DeleteTodoLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "DeleteTodoLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
           "Todo": {
             "Type": "AWS::DynamoDB::Table",
             "Properties": {
@@ -1196,7 +1355,7 @@
           "HelloLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HelloLambdaVersionKWBmlRClNBhiG13hgdoumkqIJyxI83BiaU0YJ6SaJgs"
+              "Ref": "HelloLambdaVersionSyqjIG8OSPWqysAFy6jAQZ6Nl9R83GTStF0t5U1CWw"
             },
             "Export": {
               "Name": "sls-lambda-handson-tkataoka-dev-HelloLambdaFunctionQualifiedArn"
@@ -1205,7 +1364,7 @@
           "HelloworldLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HelloworldLambdaVersionHHfLjKhHmpW5REZe04s16mLmd2dEnJHX13MPpVhsL2Y"
+              "Ref": "HelloworldLambdaVersion2hXFWS2HjjNsitv6i8GSZn4B3vCPuE8pCjWfO6J7Y0"
             },
             "Export": {
               "Name": "sls-lambda-handson-tkataoka-dev-HelloworldLambdaFunctionQualifiedArn"
@@ -1214,7 +1373,7 @@
           "HelloparamsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HelloparamsLambdaVersionaAzSpIltYFIx0zLhSqcE1ExLsjFYlmYFIneoaeAk5o"
+              "Ref": "HelloparamsLambdaVersionZTrtG3SFOkf3YvKlpkaILoGXGm5P3TIKKjdtmK3mMA"
             },
             "Export": {
               "Name": "sls-lambda-handson-tkataoka-dev-HelloparamsLambdaFunctionQualifiedArn"
@@ -1223,7 +1382,7 @@
           "FindAllTodoLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "FindAllTodoLambdaVersionS7nBQIlQcuWfFLccWRPP9Q12ezI37vmE44ofLoqIE"
+              "Ref": "FindAllTodoLambdaVersionPKLBS5KCqPKBaovDYSUjqHyKhOEbipXlik23J60vr1c"
             },
             "Export": {
               "Name": "sls-lambda-handson-tkataoka-dev-FindAllTodoLambdaFunctionQualifiedArn"
@@ -1232,7 +1391,7 @@
           "CreateTodoLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateTodoLambdaVersionloXTVOwB9ncSkePjELwWEI8AJaNrDXhNJG6bgjjDelo"
+              "Ref": "CreateTodoLambdaVersion7UqaL94zV6p30VQ1FrmDWyIBM7qyUEDQHmwdNWO4IwQ"
             },
             "Export": {
               "Name": "sls-lambda-handson-tkataoka-dev-CreateTodoLambdaFunctionQualifiedArn"
@@ -1241,10 +1400,19 @@
           "UpdateTodoLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UpdateTodoLambdaVersionOwNH8LAvzaO0baQfsoNaT6ymDCkvA5XfySfTRHoJo"
+              "Ref": "UpdateTodoLambdaVersionSeB0WML7V9YMAwBI9H2QPhQmRhL5TRiwrcGMVoS0"
             },
             "Export": {
               "Name": "sls-lambda-handson-tkataoka-dev-UpdateTodoLambdaFunctionQualifiedArn"
+            }
+          },
+          "DeleteTodoLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "DeleteTodoLambdaVersione0rKhppTVwQ7xldfdzHWT4BXlb3iujDTZaQphHB2tFg"
+            },
+            "Export": {
+              "Name": "sls-lambda-handson-tkataoka-dev-DeleteTodoLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -1396,7 +1564,7 @@
         "timeout": 6,
         "runtime": "nodejs14.x",
         "vpc": {},
-        "versionLogicalId": "HelloLambdaVersionKWBmlRClNBhiG13hgdoumkqIJyxI83BiaU0YJ6SaJgs"
+        "versionLogicalId": "HelloLambdaVersionSyqjIG8OSPWqysAFy6jAQZ6Nl9R83GTStF0t5U1CWw"
       },
       "helloworld": {
         "handler": "src/functions/helloworld/handler.main",
@@ -1417,7 +1585,7 @@
         "timeout": 6,
         "runtime": "nodejs14.x",
         "vpc": {},
-        "versionLogicalId": "HelloworldLambdaVersionHHfLjKhHmpW5REZe04s16mLmd2dEnJHX13MPpVhsL2Y"
+        "versionLogicalId": "HelloworldLambdaVersion2hXFWS2HjjNsitv6i8GSZn4B3vCPuE8pCjWfO6J7Y0"
       },
       "helloparams": {
         "handler": "src/functions/helloparams/handler.main",
@@ -1443,7 +1611,7 @@
         "timeout": 6,
         "runtime": "nodejs14.x",
         "vpc": {},
-        "versionLogicalId": "HelloparamsLambdaVersionaAzSpIltYFIx0zLhSqcE1ExLsjFYlmYFIneoaeAk5o"
+        "versionLogicalId": "HelloparamsLambdaVersionZTrtG3SFOkf3YvKlpkaILoGXGm5P3TIKKjdtmK3mMA"
       },
       "findAllTodo": {
         "handler": "src/functions/findAllTodo/handler.main",
@@ -1464,7 +1632,7 @@
         "timeout": 6,
         "runtime": "nodejs14.x",
         "vpc": {},
-        "versionLogicalId": "FindAllTodoLambdaVersionS7nBQIlQcuWfFLccWRPP9Q12ezI37vmE44ofLoqIE"
+        "versionLogicalId": "FindAllTodoLambdaVersionPKLBS5KCqPKBaovDYSUjqHyKhOEbipXlik23J60vr1c"
       },
       "createTodo": {
         "handler": "src/functions/createTodo/handler.main",
@@ -1485,7 +1653,7 @@
         "timeout": 6,
         "runtime": "nodejs14.x",
         "vpc": {},
-        "versionLogicalId": "CreateTodoLambdaVersionloXTVOwB9ncSkePjELwWEI8AJaNrDXhNJG6bgjjDelo"
+        "versionLogicalId": "CreateTodoLambdaVersion7UqaL94zV6p30VQ1FrmDWyIBM7qyUEDQHmwdNWO4IwQ"
       },
       "updateTodo": {
         "handler": "src/functions/updateTodo/handler.main",
@@ -1506,7 +1674,28 @@
         "timeout": 6,
         "runtime": "nodejs14.x",
         "vpc": {},
-        "versionLogicalId": "UpdateTodoLambdaVersionOwNH8LAvzaO0baQfsoNaT6ymDCkvA5XfySfTRHoJo"
+        "versionLogicalId": "UpdateTodoLambdaVersionSeB0WML7V9YMAwBI9H2QPhQmRhL5TRiwrcGMVoS0"
+      },
+      "deleteTodo": {
+        "handler": "src/functions/deleteTodo/handler.main",
+        "events": [
+          {
+            "http": {
+              "method": "delete",
+              "path": "deleteTodo/{id}",
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "lambda-handson-tkataoka-dev-deleteTodo",
+        "package": {
+          "artifact": ".serverless/lambda-handson-tkataoka.zip"
+        },
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs14.x",
+        "vpc": {},
+        "versionLogicalId": "DeleteTodoLambdaVersione0rKhppTVwQ7xldfdzHWT4BXlb3iujDTZaQphHB2tFg"
       }
     },
     "resources": {
@@ -1563,7 +1752,7 @@
     "isDashboardMonitoringPreconfigured": false
   },
   "package": {
-    "artifactDirectoryName": "serverless/lambda-handson-tkataoka/dev/1629254088904-2021-08-18T02:34:48.904Z",
+    "artifactDirectoryName": "serverless/lambda-handson-tkataoka/dev/1629256733816-2021-08-18T03:18:53.816Z",
     "artifact": ""
   }
 }
