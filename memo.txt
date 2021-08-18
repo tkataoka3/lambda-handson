@@ -1,0 +1,5 @@
+1. src/functions/helloフォルダをコピーして、名前をhelloworldフォルダに変更する
+2. helloworldフォルダのhandler.tsを修正する
+3. helloworldフォルダのindex.tsを修正する
+4. src/functions/index.tsを修正する
+5. serverless.tsを修正する
